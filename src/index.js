@@ -20,6 +20,7 @@ exports.pushStream = async (
     index = getTableNameFromARN(event.Records[0].eventSourceARN),
     type = getTableNameFromARN(event.Records[0].eventSourceARN),
     endpoint,
+    apiKey,
     refresh = true,
     testMode = false,
     transformFunction = undefined,
@@ -31,7 +32,7 @@ exports.pushStream = async (
   validateBoolean(refresh, 'refresh')
   validateFunctionOrUndefined(transformFunction, 'transformFunction')
 
-  const es = elastic(endpoint, testMode, elasticSearchOptions)
+  const es = elastic(endpoint, apiKey, testMode, elasticSearchOptions)
 
   for (const record of event.Records) {
     const keys = converter(record.dynamodb.Keys)
