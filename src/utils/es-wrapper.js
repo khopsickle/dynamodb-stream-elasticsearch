@@ -6,15 +6,13 @@ module.exports = (hosts, apiKey, testMode, options) => {
   const esParams = { hosts }
   // Because we use ordinary elasticsearch container instead of AWS elasticsearch for integration tests
   if (!testMode) esParams.connectionClass = httpAwsEs
-  console.log('esPArams', esParams);
-  console.log('hosts', hosts);
+
   // const es = new elasticsearch.Client({ ...esParams, ...options })
   const es = new Client6({
     node: esParams,
     headers: {
       Authorization: `ApiKey ${apiKey}`,
     },
-    // ssl
   });
   return {
     index: ({ index, type, id, body, refresh }) => new Promise((resolve, reject) => {
