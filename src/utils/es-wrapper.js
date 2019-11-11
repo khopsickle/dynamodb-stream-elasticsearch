@@ -11,7 +11,8 @@ module.exports = (hosts, apiKey, testMode, options) => {
   const es = new Client6({
     node: esParams,
     headers: {
-      Authorization: `ApiKey ${apiKey}`,
+      authorization: `ApiKey ${apiKey}`,
+      // Authorization: `ApiKey ${apiKey}`,
     },
   });
   return {
