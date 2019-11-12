@@ -32,10 +32,6 @@ exports.pushStream = async (
   validateBoolean(refresh, 'refresh')
   validateFunctionOrUndefined(transformFunction, 'transformFunction')
 
-  console.log('before elastic()');
-  console.log('endpoint', endpoint);
-  console.log('apiKey', apiKey);
-  console.log('elasticSearchOptions', elasticSearchOptions);
   const es = elastic(endpoint, apiKey, testMode, elasticSearchOptions)
 
   for (const record of event.Records) {
