@@ -15,12 +15,6 @@ module.exports = (hosts, apiKey, testMode, options) => {
   return {
     index: ({ index, type, id, body, refresh }) => new Promise((resolve, reject) => {
       es.index({ index, type, id, body, refresh, timeout: '5m' }, (error, response) => {
-        console.log('es.index');
-        console.log(index);
-        console.log(type);
-        console.log(id);
-        console.log(body);
-        console.log(refresh);
         if (error) reject(error)
         resolve(response)
       })
