@@ -1,5 +1,5 @@
 const httpAwsEs = require('http-aws-es')
-const { Client: Client6 } = require('es6');
+const { Client: Client6 } = require('@elastic/elasticsearch');
 
 module.exports = (hosts, apiKey, testMode, options) => {
   const esParams = { hosts }
