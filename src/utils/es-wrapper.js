@@ -1,7 +1,7 @@
 const httpAwsEs = require('http-aws-es')
 const { Client: Client6 } = require('@elastic/elasticsearch');
 
-module.exports = (hosts, apiKey, testMode, options) => {
+module.exports = (hosts, apiKey, cacert, testMode, options) => {
   const esParams = { hosts }
   // Because we use ordinary elasticsearch container instead of AWS elasticsearch for integration tests
   if (!testMode) esParams.connectionClass = httpAwsEs
@@ -10,6 +10,10 @@ module.exports = (hosts, apiKey, testMode, options) => {
     node: esParams.hosts,
     headers: {
       Authorization: `ApiKey ${apiKey}`,
+    },
+    ssl: {
+      ca: cacert,
+      rejectUnauthorized: true,
     },
   });
   return {
