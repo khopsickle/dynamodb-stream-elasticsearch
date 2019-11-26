@@ -23,7 +23,6 @@ exports.pushStream = async (
     apiKey,
     cacert,
     refresh = true,
-    testMode = false,
     transformFunction = undefined,
     elasticSearchOptions
   } = {}) => {
@@ -33,7 +32,7 @@ exports.pushStream = async (
   validateBoolean(refresh, 'refresh')
   validateFunctionOrUndefined(transformFunction, 'transformFunction')
 
-  const es = elastic(endpoint, apiKey, cacert, testMode, elasticSearchOptions)
+  const es = elastic(endpoint, apiKey, cacert, elasticSearchOptions)
 
   for (const record of event.Records) {
     const keys = converter(record.dynamodb.Keys)
